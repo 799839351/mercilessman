@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * @author tanxiaokang（AZ6342）
+ * @author tanxiaokang
  * @description
  * @date 2020/3/11 11:04
  **/
@@ -55,7 +55,7 @@ public class CommentPlugin extends PluginAdapter {
         String remark = introspectedColumn.getRemarks();
         if (remark != null && remark.length() > 1) {
             element.addJavaDocLine(" * " + remark);
-            element.addJavaDocLine(" *");
+            element.addJavaDocLine(" */");
             return;
         }
 

@@ -119,8 +119,6 @@ public class DefaultLombokPlugin extends PluginAdapter {
     protected void addDataAnnotation(TopLevelClass topLevelClass) {
         topLevelClass.addImportedType(dataAnnotation);
         topLevelClass.addAnnotation("@Data");
-        topLevelClass.addImportedType("org.springframework.stereotype.Repository");
-        topLevelClass.addAnnotation("@Repository");
     }
 
 }
