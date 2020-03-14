@@ -11,6 +11,7 @@
     <modules>
         <module>mercilessman-framework-banner</module>
         <module>mercilessman-framework-idworker</module>
+        <module>mercilessman-framework-GeneratorPlugin</module>
     </modules>
 
     <properties>
@@ -19,22 +20,25 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mybatis-generator.version>1.4.0</mybatis-generator.version>
+        <spring.version>5.2.4.RELEASE</spring.version>
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <mysql-connector.version>8.0.12</mysql-connector.version>
         <lombok.version>1.18.12</lombok.version>
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
         <jsch.version>0.1.55</jsch.version>
-        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <lombok.version>1.18.12</lombok.version>
         <slf4j-api.version>1.7.30</slf4j-api.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
             <dependency>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-core</artifactId>
-                <version>${mybatis-generator.version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
             </dependency>
+
             <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -76,9 +80,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis-generator-core.version}</version>
 
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -134,10 +142,26 @@
 
     <distributionManagement>
         <repository>
-            <id>cmb-public-repo</id>
-            <name>cmb</name>
-            <url>http://repo.o2o.cmbchina.com/repository/snapshots/</url>
+            <id>maven-snapshots</id>
+            <name>maven-snapshots</name>
+            <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
             <uniqueVersion>false</uniqueVersion>
         </repository>
+
+      <!--  <repositories>
+            <repository>
+                <name>maven-public</name>
+                <id>maven-public</id>
+                <url>http://127.0.0.1:8081/repository/maven-public/</url>
+                <snapshots>
+                    <enabled>true</enabled>
+                    <updatePolicy>always</updatePolicy>
+                </snapshots>
+                <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>always</updatePolicy>
+                </releases>
+            </repository>
+        </repositories>-->
     </distributionManagement>
 </project>
