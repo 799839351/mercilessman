@@ -13,16 +13,6 @@
         <version> 1.18.6</version>
     </dependency>
     <dependency>
-        <groupId>tk.mybatis</groupId>
-        <artifactId>mapper</artifactId>
-        <version> 4.1.5</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>5.1.6.RELEASE</version>
-    </dependency>
-    <dependency>
         <groupId>javax.persistence</groupId>
         <artifactId>javax.persistence-api</artifactId>
         <version>2.2</version>
