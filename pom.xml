@@ -11,7 +11,8 @@
     <modules>
         <module>mercilessman-framework-banner</module>
         <module>mercilessman-framework-idworker</module>
-        <module>mercilessman-framework-GeneratorPlugin</module>
+        <module>mercilessman-framework-generatorplugin</module>
+        <module>mercilessman-framework-filestorage</module>
     </modules>
 
     <properties>
@@ -27,10 +28,42 @@
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
         <jsch.version>0.1.55</jsch.version>
         <lombok.version>1.18.12</lombok.version>
+        <apache-common.version>3.9</apache-common.version>
         <slf4j-api.version>1.7.30</slf4j-api.version>
+        <javax-servlet.version>4.0.1</javax-servlet.version>
+        <fastjson.version>1.2.67</fastjson.version>
+        <org-apache-poi.version>4.0.1</org-apache-poi.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${org-apache-poi.version}</version>
+            </dependency>
+            <!--本类主要是读取后缀为xlsx或xls的excel操作。-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${org-apache-poi.version}</version>
+            </dependency>
+
+
+
+            <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax-servlet.version}</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
             <dependency>
@@ -38,6 +71,18 @@
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache-common.version}</version>
+            </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
             <dependency>
