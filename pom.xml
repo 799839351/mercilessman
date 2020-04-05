@@ -13,6 +13,7 @@
         <module>mercilessman-framework-idworker</module>
         <module>mercilessman-framework-generatorplugin</module>
         <module>mercilessman-framework-filestorage</module>
+        <module>mercilessman-framework-mq</module>
     </modules>
 
     <properties>
@@ -35,6 +36,10 @@
         <org-apache-poi.version>4.0.1</org-apache-poi.version>
         <flying-saucer-pdf-itext5.version>9.1.20</flying-saucer-pdf-itext5.version>
         <thumbnailator.version>0.4.11</thumbnailator.version>
+        <apache-commons-io.version>2.6</apache-commons-io.version>
+        <gson.version>2.8.6</gson.version>
+        <kafka.version>0.10.2.1</kafka.version>
+        <apache-commons-logging.version>1.2</apache-commons-logging.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -145,6 +150,30 @@
                 <version>${mybatis-generator-core.version}</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${apache-commons-io.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${apache-commons-logging.version}</version>
+            </dependency>
 
 
         </dependencies>
