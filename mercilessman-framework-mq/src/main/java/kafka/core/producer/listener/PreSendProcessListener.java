@@ -47,8 +47,8 @@ public class PreSendProcessListener extends AbstractListener<PreSendingEvent>
         try {
             ProduceContext context = event.getContext();
             for (Map.Entry<ProduceStatus, ProduceProcessor> entry : this.processors.entrySet()) {
-                context.setLastStatus((ProduceStatus) entry.getKey());
-                ((ProduceProcessor) entry.getValue()).process(event.getContext());
+                context.setLastStatus(entry.getKey());
+                entry.getValue().process(event.getContext());
             }
             this.broadcaster.publish(new SendingEvent(context));
         } catch (Exception e) {

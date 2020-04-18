@@ -34,16 +34,14 @@ public class SendingListener
             context.setLastStatus(ProduceStatus.SEND);
             if (!context.isCanceled()) {
                 context.markSent();
-                this.sender.send(context, new SendCallback() {
-                    public void afterSendComplete(Map<String, Object> metadata, Exception e) {
-                        context.setSendMetadata(metadata);
-                        if (e == null) {
-                            SendingListener.this.broadcaster.publish(new PostSendingEvent(context));
-                            SendingListener.LOGGER.debug("Message: " + context + " is successfully sent.");
-                        } else {
-                            SendingListener.this.broadcaster.publish(new SendingErrorEvent(context, e));
-                            SendingListener.LOGGER.debug("Message: " + context + " has encountered problem when sending.", e);
-                        }
+                this.sender.send(context, (metadata, e) -> {
+                    context.setSendMetadata(metadata);
+                    if (e == null) {
+                        SendingListener.this.broadcaster.publish(new PostSendingEvent(context));
+                        SendingListener.LOGGER.debug("Message: " + context + " is successfully sent.");
+                    } else {
+                        SendingListener.this.broadcaster.publish(new SendingErrorEvent(context, e));
+                        SendingListener.LOGGER.debug("Message: " + context + " has encountered problem when sending.", e);
                     }
                 });
             }

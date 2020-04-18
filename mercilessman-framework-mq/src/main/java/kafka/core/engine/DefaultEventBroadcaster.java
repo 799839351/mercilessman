@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 
 public class DefaultEventBroadcaster implements EventBroadcaster {
     public static final Logger LOGGER = LoggerFactory.getLogger(DefaultEventBroadcaster.class);
-    public static final Long EVENT_QUEUE_RESERVE = Long.valueOf(50L);
+    public static final Long EVENT_QUEUE_RESERVE = 50L;
     private ConcurrentHashMap<Class<? extends Event>, Set<Listener>> listenerRegistry;
     private final String name;
     private final ThreadPoolExecutor executor;
@@ -35,10 +35,10 @@ public class DefaultEventBroadcaster implements EventBroadcaster {
             if (!this.listenerRegistry.containsKey(eventType)) {
                 this.listenerRegistry.put(eventType, new CopyOnWriteArraySet());
             }
-            Set<Listener> listenerSet = (Set) this.listenerRegistry.get(eventType);
+            Set<Listener> listenerSet =  this.listenerRegistry.get(eventType);
             listenerSet.add(listener);
         }
-        if ((listener instanceof BroadcasterAware)) {
+        if (listener instanceof BroadcasterAware) {
             ((BroadcasterAware) listener).setBroadcaster(this);
         }
     }
@@ -46,7 +46,7 @@ public class DefaultEventBroadcaster implements EventBroadcaster {
     public synchronized void unregister(Listener listener, Class<? extends Event>[] eventTypes) {
         for (Class<? extends Event> eventType : eventTypes) {
             if (this.listenerRegistry.containsKey(eventType)) {
-                Set<Listener> listenerSet = (Set) this.listenerRegistry.get(eventType);
+                Set<Listener> listenerSet = this.listenerRegistry.get(eventType);
                 if (null != listenerSet) {
                     listenerSet.remove(listener);
                     if (listenerSet.isEmpty()) {
@@ -60,16 +60,14 @@ public class DefaultEventBroadcaster implements EventBroadcaster {
     public void publish(final Event event, boolean rejectable) {
         Class<? extends Event> eventType = event.getClass();
 
-        Set<Listener> listeners = (Set) this.listenerRegistry.get(eventType);
+        Set<Listener> listeners = this.listenerRegistry.get(eventType);
         if (listeners != null) {
             for (final Listener listener : listeners) {
-                submitTask(new Runnable() {
-                    public void run() {
-                        try {
-                            listener.process(event);
-                        } catch (Throwable e) {
-                            DefaultEventBroadcaster.LOGGER.error("Error processing event: " + event + " with listener: " + listener, e);
-                        }
+                submitTask(() -> {
+                    try {
+                        listener.process(event);
+                    } catch (Throwable e) {
+                        DefaultEventBroadcaster.LOGGER.error("Error processing event: " + event + " with listener: " + listener, e);
                     }
                 }, rejectable);
             }
