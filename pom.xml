@@ -32,7 +32,7 @@
         <apache-common.version>3.9</apache-common.version>
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <javax-servlet.version>4.0.1</javax-servlet.version>
-        <fastjson.version>1.2.67</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <org-apache-poi.version>4.0.1</org-apache-poi.version>
         <flying-saucer-pdf-itext5.version>9.1.20</flying-saucer-pdf-itext5.version>
         <thumbnailator.version>0.4.11</thumbnailator.version>
